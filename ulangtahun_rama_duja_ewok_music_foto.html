@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selamat Ulang Tahun Rama Duja</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      text-align: center;
+      max-width: 600px;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 2s ease-out;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #ff4081;
+      animation: textBounce 2s infinite;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .emoji {
+      font-size: 2.5rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @keyframes textBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Fireworks canvas */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fireworks"></canvas>
+
+  <div class="card">
+    <h1>Selamat Ulang Tahun, Rama Duja! 🎉</h1>
+    <div class="emoji">🎂🎈🎁</div>
+    <p>Semoga panjang umur, sehat selalu, dan semua harapan terkabul.</p>
+    <p>Hari ini spesial untukmu, nikmati dengan penuh kebahagiaan!</p>
+    <div class="footer">Dari: ewok</div>
+  </div>
+
+  <script>
+    // Simple fireworks effect
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.radius = Math.random() * 3 + 1;
+        this.color = color;
+        this.speedX = Math.random() * 5 - 2.5;
+        this.speedY = Math.random() * 5 - 2.5;
+        this.alpha = 1;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.alpha -= 0.01;
+      }
+
+      draw() {
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    function createFirework() {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height / 2;
+      const colors = ['#ff4081', '#ffe600', '#3ae374', '#18dcff', '#7d5fff'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      for (let i = 0; i < 30; i++) {
+        particles.push(new Particle(x, y, color));
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, i) => {
+        p.update();
+        p.draw();
+        if (p.alpha <= 0) particles.splice(i, 1);
+      });
+      requestAnimationFrame(animate);
+    }
+
+    setInterval(createFirework, 1000);
+    animate();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-birthday.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio tag.
+  </audio>
+
+  <div style="text-align:center; padding: 20px;">
+    <h2>Foto-foto Kenangan</h2>
+    <img src="file-Xx8qqgH3o2t1mg3Tfo48ut.jpg" alt="Foto Kenangan" style="width: 100%; max-width: 500px; margin: 20px auto; display: block; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+<img src="file-8fZrACVLtSkudnHfUgZYGW.jpg" alt="Foto Kenangan" style="width: 100%; max-width: 500px; margin: 20px auto; display: block; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+<img src="file-7tbqZe8T2oBZZvCdwzKs64.jpg" alt="Foto Kenangan" style="width: 100%; max-width: 500px; margin: 20px auto; display: block; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+<img src="file-U4dCaFbsx7mcT73mXg3H9g.jpg" alt="Foto Kenangan" style="width: 100%; max-width: 500px; margin: 20px auto; display: block; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+  </div>
+</body>
+</html>
